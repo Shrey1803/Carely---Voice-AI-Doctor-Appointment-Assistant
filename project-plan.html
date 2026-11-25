@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Carely — Voice AI Doctor Appointment Assistant — Complete Build Plan</title>
+<style>
+    @page {
+        size: A4;
+        margin: 18mm 16mm 18mm 16mm;
+        @bottom-right {
+            content: counter(page);
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.55;
+        color: #1e293b;
+        background: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4 {
+        color: #0f172a;
+        font-weight: 700;
+        page-break-after: avoid;
+    }
+
+    h1 {
+        font-size: 20pt;
+        line-height: 1.25;
+        border-bottom: 2px solid #4f46e5;
+        padding-bottom: 8px;
+        margin-top: 0;
+        margin-bottom: 14px;
+        color: #312e81;
+    }
+
+    h2 {
+        font-size: 13.5pt;
+        margin-top: 22px;
+        margin-bottom: 10px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #1e1b4b;
+    }
+
+    h3 {
+        font-size: 11.5pt;
+        margin-top: 14px;
+        margin-bottom: 6px;
+        color: #334155;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    hr {
+        border: 0;
+        border-top: 1px solid #e2e8f0;
+        margin: 16px 0;
+    }
+
+    /* Blockquotes / Callout Header */
+    blockquote {
+        border-left: 4px solid #6366f1;
+        background-color: #f8fafc;
+        padding: 8px 14px;
+        margin: 10px 0;
+        color: #475569;
+        font-size: 10pt;
+        border-radius: 0 6px 6px 0;
+    }
+
+    blockquote strong {
+        color: #1e293b;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0 16px 0;
+        font-size: 9.5pt;
+        page-break-inside: avoid;
+    }
+
+    th, td {
+        border: 1px solid #cbd5e1;
+        padding: 7px 10px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+
+    /* Code & Prompts */
+    pre {
+        background-color: #0f172a;
+        color: #f8fafc;
+        padding: 12px 14px;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 8.5pt;
+        line-height: 1.45;
+        margin: 10px 0 14px 0;
+        page-break-inside: avoid;
+        border: 1px solid #1e293b;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    code {
+        font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 9pt;
+        background-color: #f1f5f9;
+        color: #4338ca;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    pre code {
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    /* Alerts */
+    .alert-box {
+        margin: 12px 0;
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 9.5pt;
+        page-break-inside: avoid;
+    }
+
+    .alert-header {
+        font-weight: 700;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .alert-important {
+        background-color: #eff6ff;
+        border: 1px solid #bfdbfe;
+        color: #1e40af;
+    }
+
+    .alert-tip {
+        background-color: #ecfdf5;
+        border: 1px solid #a7f3d0;
+        color: #065f46;
+    }
+
+    .alert-caution {
+        background-color: #fff1f2;
+        border: 1px solid #fecdd3;
+        color: #9f1239;
+    }
+
+    .alert-warning {
+        background-color: #fffbeb;
+        border: 1px solid #fde68a;
+        color: #92400e;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin-top: 0;
+        margin-bottom: 10px;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 4px;
+    }
+
+    /* Badges & highlights */
+    .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 9999px;
+        font-size: 8pt;
+        font-weight: 600;
+    }
+
+    /* Header document banner */
+    .doc-banner {
+        background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+        color: #ffffff;
+        padding: 16px 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .doc-banner h1 {
+        color: #ffffff;
+        border-bottom: none;
+        margin: 0 0 6px 0;
+        padding: 0;
+        font-size: 18pt;
+    }
+
+    .doc-banner p {
+        margin: 0;
+        font-size: 10pt;
+        opacity: 0.9;
+    }
+
+    /* Avoid page break before major section headers */
+    .phase-section {
+        page-break-inside: avoid;
+        margin-top: 18px;
+    }
+</style>
+</head>
+<body>
+
+<div class="doc-banner">
+    <h1>🏥 Carely — Voice AI Doctor Appointment Assistant</h1>
+    <p><strong>Complete Phase-Wise Engineering Breakdown & Copy-Paste AI Prompts</strong></p>
+    <p style="margin-top: 4px; font-size: 9pt; opacity: 0.8;">SDE Intern Round 1 Assignment · Deadline: Wednesday, 25 November, 11:00 PM IST</p>
+</div>
+
+<h1>🏥 Carely — Voice AI Doctor Appointment Assistant — Complete Build Plan</h1>
+<blockquote>
+<p><strong>Project:</strong> SDE Intern Round 1 Assignment<br />
+<strong>Deadline:</strong> Wednesday, 25 November, 11:00 PM IST<br />
+<strong>Goal:</strong> Build a working voice-based doctor appointment booking system with a professional frontend dashboard.</p>
+</blockquote>
+<hr />
+<h2>📐 Architecture Overview</h2>
+<div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; font-family: monospace; font-size: 9pt; margin: 10px 0;">
+<strong>Pipeline Flow Diagram:</strong><br>
+Browser Mic ➔ WebSocket ➔ Silero VAD ➔ ElevenLabs STT ➔ Google Gemini LLM (Function Calling) ➔ ElevenLabs TTS ➔ WebSocket ➔ Browser Speaker<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ SQLite Database (Doctors, Slots, Appointments)
+</div>
+
+<hr />
+<h2>🛠️ Tech Stack Decision</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Voice Pipeline</strong></td>
+<td>Pipecat (Python)</td>
+<td>Required by assignment</td>
+</tr>
+<tr>
+<td><strong>STT</strong></td>
+<td>ElevenLabs</td>
+<td>Required by assignment</td>
+</tr>
+<tr>
+<td><strong>TTS</strong></td>
+<td>ElevenLabs</td>
+<td>Required by assignment</td>
+</tr>
+<tr>
+<td><strong>LLM</strong></td>
+<td>Google Gemini 2.0 Flash</td>
+<td>Free quota, excellent function calling</td>
+</tr>
+<tr>
+<td><strong>Backend Server</strong></td>
+<td>FastAPI (Python)</td>
+<td>Async, WebSocket support, works with Pipecat</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>SQLite + JSON seed data</td>
+<td>Simple, file-based, no setup needed</td>
+</tr>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>React 18 + Vite + TypeScript</td>
+<td>Fast dev, rich ecosystem</td>
+</tr>
+<tr>
+<td><strong>Styling</strong></td>
+<td>Tailwind CSS 3 + Framer Motion</td>
+<td>Professional look + smooth animations</td>
+</tr>
+<tr>
+<td><strong>Audio</strong></td>
+<td>Web Audio API + MediaRecorder</td>
+<td>Browser-native mic/speaker access</td>
+</tr>
+<tr>
+<td><strong>WebSocket</strong></td>
+<td>FastAPI WebSocket + browser WebSocket API</td>
+<td>Real-time bidirectional audio + transcript</td>
+</tr>
+<tr>
+<td><strong>VAD (Bonus)</strong></td>
+<td>Silero VAD (via Pipecat)</td>
+<td>Better turn-taking, bonus marks</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📋 Phase-Wise Breakdown</h2>
+<div class="alert-box alert-important">
+    <div class="alert-header"><span class="alert-icon">⚡</span> <strong>IMPORTANT</strong></div>
+    <div class="alert-body">Each phase has a **ready-to-use prompt** you can copy-paste into any AI IDE. Phases are sequential — complete each one and test before moving on. Estimated total: **10-14 hours**.</div>
+</div>
+
+<hr />
+<h2>Phase 0 — Project Scaffolding &amp; Environment Setup</h2>
+<p><strong>⏱️ Estimated Time: 30 minutes</strong></p>
+<h3>What You Build</h3>
+<ul>
+<li>Project folder structure</li>
+<li>Python virtual environment with all dependencies</li>
+<li>React + Vite frontend scaffold</li>
+<li><code>.env.example</code> and <code>.gitignore</code></li>
+<li>SQLite database schema + seed data</li>
+</ul>
+<h3>Deliverables Checklist</h3>
+<ul>
+<li>[ ] Root folder with <code>backend/</code> and <code>frontend/</code> directories</li>
+<li>[ ] <code>backend/requirements.txt</code> with all Python dependencies</li>
+<li>[ ] <code>frontend/package.json</code> with all JS dependencies</li>
+<li>[ ] <code>.env.example</code> with placeholder keys</li>
+<li>[ ] <code>.gitignore</code> ignoring <code>.env</code>, <code>node_modules</code>, <code>__pycache__</code>, <code>*.db</code></li>
+<li>[ ] <code>backend/data/seed_data.json</code> with mock doctors, specialties, slots</li>
+<li>[ ] <code>backend/database.py</code> — SQLite setup + seed loader</li>
+<li>[ ] <code>README.md</code> skeleton</li>
+</ul>
+<h3>Testing</h3>
+<pre><code>✅ Python venv activates and all packages install
+✅ Frontend runs with `npm run dev` (blank page is fine)
+✅ SQLite database creates and seeds with mock data
+✅ .env.example has all required variable names
+</code></pre>
+<h3>📋 PROMPT — Phase 0</h3>
+<pre><code>You are building a &quot;Voice AI Doctor Appointment Assistant&quot; from scratch.
+
+PROJECT STRUCTURE:
+voice-ai-doctor/
+├── backend/
+│   ├── main.py                  # FastAPI entry point
+│   ├── database.py              # SQLite setup, connection, seed
+│   ├── models.py                # Pydantic models
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   ├── doctors.py           # REST endpoints for doctors/slots
+│   │   └── appointments.py      # REST endpoints for appointments
+│   ├── voice/
+│   │   ├── __init__.py
+│   │   ├── pipeline.py          # Pipecat voice pipeline
+│   │   └── tools.py             # LLM function-calling tools
+│   ├── data/
+│   │   └── seed_data.json       # Mock doctors, specialties, time slots
+│   ├── requirements.txt
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── types/
+│   │   └── utils/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── index.html
+├── .gitignore
+├── .env.example
+└── README.md
+
+TASK:
+1. Create this entire folder structure with placeholder files.
+
+2. Create `backend/requirements.txt`:
+   pipecat-ai[google,elevenlabs,silero]
+   fastapi
+   uvicorn[standard]
+   websockets
+   python-dotenv
+   aiosqlite
+   pydantic
+
+3. Create `backend/data/seed_data.json` with realistic mock data:
+   - At least 5 doctors across specialties (Cardiology, Dermatology, Pediatrics, Orthopedics, General Medicine)
+   - Each doctor has: id, name, specialty, available_slots (array of {date: &quot;YYYY-MM-DD&quot;, time: &quot;HH:MM&quot;, duration_minutes: 30})
+   - Slots should span the next 7 days, 3-5 slots per doctor per day (9:00 AM to 5:00 PM range)
+   - Make names realistic (Dr. Sarah Johnson, Dr. Raj Patel, etc.)
+
+4. Create `backend/database.py`:
+   - Use aiosqlite
+   - Tables: doctors (id, name, specialty), slots (id, doctor_id, date, time, duration, is_booked), appointments (id, doctor_id, slot_id, patient_phone, created_at)
+   - Function to seed from JSON
+   - Async context manager for DB connections
+
+5. Create `backend/models.py` with Pydantic models:
+   - Doctor, Slot, Appointment, BookingRequest, CancellationRequest
+
+6. Create `backend/.env.example`:
+   ELEVENLABS_API_KEY=your_elevenlabs_api_key
+   GOOGLE_API_KEY=your_google_gemini_api_key
+   ELEVENLABS_VOICE_ID=your_preferred_voice_id
+   DATABASE_PATH=./doctor_appointments.db
+
+7. Create frontend with React + Vite + TypeScript:
+   Run: npm create vite@latest frontend -- --template react-ts
+   Install: tailwindcss, postcss, autoprefixer, framer-motion, lucide-react
+
+8. Create `.gitignore` covering Python, Node.js, .env, .db files
+
+9. Create a skeleton `README.md` with:
+   - Project title and description
+   - Tech stack list
+   - Sections for Setup, Running, Environment Variables (to be filled later)
+
+Make sure the database seeds automatically on first run. Use `datetime` to generate slot dates relative to today so they're always in the future.
+</code></pre>
+<hr />
+<h2>Phase 1 — Backend REST API (Doctors, Slots, Appointments)</h2>
+<p><strong>⏱️ Estimated Time: 1.5 hours</strong></p>
+<h3>What You Build</h3>
+<ul>
+<li>FastAPI server with REST endpoints</li>
+<li>CRUD for doctors, slots, and appointments</li>
+<li>CORS configuration for frontend</li>
+</ul>
+<h3>API Endpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/doctors</code></td>
+<td>List all doctors (with optional <code>?specialty=</code> filter)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/doctors/{id}</code></td>
+<td>Get single doctor details</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/doctors/{id}/slots</code></td>
+<td>Get available slots for a doctor (optional <code>?date=</code> filter)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/appointments</code></td>
+<td>List all appointments (optional <code>?phone=</code> filter)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/appointments</code></td>
+<td>Book an appointment</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/api/appointments/{id}</code></td>
+<td>Cancel an appointment</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/health</code></td>
+<td>Health check</td>
+</tr>
+</tbody>
+</table>
+<h3>Deliverables Checklist</h3>
+<ul>
+<li>[ ] All endpoints working and returning proper JSON</li>
+<li>[ ] CORS middleware configured for <code>http://localhost:5173</code></li>
+<li>[ ] Database auto-seeds on startup</li>
+<li>[ ] Proper error handling (404, 409 for double-booking, etc.)</li>
+</ul>
+<h3>Testing</h3>
+<pre><code>✅ GET /api/doctors returns list of 5+ doctors
+✅ GET /api/doctors/1/slots returns available slots
+✅ POST /api/appointments books a slot and marks it as taken
+✅ GET /api/appointments?phone=1234567890 returns that booking
+✅ DELETE /api/appointments/{id} cancels and frees the slot
+✅ Double-booking same slot returns 409 error
+✅ Health check returns 200
+</code></pre>
+<h3>📋 PROMPT — Phase 1</h3>
+<pre><code>I have a FastAPI project for a Voice AI Doctor Appointment Assistant. The database layer (`database.py`) and models (`models.py`) are already created with SQLite (aiosqlite).
+
+DATABASE TABLES:
+- doctors: id INTEGER PK, name TEXT, specialty TEXT
+- slots: id INTEGER PK, doctor_id INTEGER FK, date TEXT, time TEXT, duration_minutes INTEGER, is_booked BOOLEAN DEFAULT 0
+- appointments: id INTEGER PK, doctor_id INTEGER FK, slot_id INTEGER FK, patient_phone TEXT, created_at TEXT
+
+TASK: Build the complete REST API layer.
+
+1. Create `backend/routes/doctors.py`:
+   - GET /api/doctors — list all doctors, optional query param ?specialty= to filter
+   - GET /api/doctors/{doctor_id} — get single doctor with their specialty
+   - GET /api/doctors/{doctor_id}/slots — get AVAILABLE (is_booked=0) slots, optional ?date=YYYY-MM-DD filter
+   - Return 404 if doctor not found
+   - Each slot in response should include: id, date, time, duration_minutes, doctor_name
+
+2. Create `backend/routes/appointments.py`:
+   - GET /api/appointments — list all appointments with doctor name and slot details, optional ?phone= filter
+   - POST /api/appointments — book appointment
+     Body: { &quot;doctor_id&quot;: int, &quot;slot_id&quot;: int, &quot;patient_phone&quot;: string }
+     Validate: slot exists, slot is not already booked, phone format is reasonable
+     On success: set slot.is_booked = 1, create appointment record, return appointment
+     On conflict: return 409 with message &quot;This slot is already booked&quot;
+   - DELETE /api/appointments/{appointment_id} — cancel appointment
+     On success: set slot.is_booked = 0, delete appointment record
+     On not found: return 404
+
+3. Create/update `backend/main.py`:
+   - FastAPI app with title &quot;Voice AI Doctor Appointment Assistant&quot;
+   - Include both routers
+   - Add CORS middleware allowing origin http://localhost:5173 (React dev server)
+   - On startup event: initialize database and seed data
+   - GET /api/health returns {&quot;status&quot;: &quot;healthy&quot;, &quot;timestamp&quot;: &quot;...&quot;}
+   - Run with uvicorn on port 8000
+
+4. Add proper error handling:
+   - Use HTTPException for all error cases
+   - Return meaningful error messages
+   - Log important operations
+
+5. Create a simple test script `backend/test_api.py` that uses httpx or requests to hit every endpoint and verify responses. Include:
+   - Test listing doctors
+   - Test filtering by specialty
+   - Test getting available slots
+   - Test full booking flow (book → verify → cancel → verify slot freed)
+   - Test error cases (double-book, cancel non-existent)
+
+Make all database calls async. Use proper type hints. Add docstrings to each endpoint.
+</code></pre>
+<hr />
+<h2>Phase 2 — Pipecat Voice Pipeline + LLM Tool Calling</h2>
+<p><strong>⏱️ Estimated Time: 3 hours</strong> ⭐ <em>Core — most critical phase</em></p>
+<h3>What You Build</h3>
+<ul>
+<li>Pipecat pipeline: Audio In → VAD → STT → LLM → TTS → Audio Out</li>
+<li>Three LLM-callable tools registered in the pipeline</li>
+<li>WebSocket transport for browser audio</li>
+<li>System prompt that guides the AI doctor receptionist</li>
+</ul>
+<h3>Deliverables Checklist</h3>
+<ul>
+<li>[ ] Pipeline initializes with ElevenLabs STT + TTS + Gemini LLM</li>
+<li>[ ] Silero VAD integrated for voice activity detection</li>
+<li>[ ] <code>check_doctor_availability</code> tool works via function calling</li>
+<li>[ ] <code>book_appointment</code> tool works via function calling</li>
+<li>[ ] <code>cancel_appointment</code> tool works via function calling</li>
+<li>[ ] Agent confirms phone number before booking/cancelling</li>
+<li>[ ] WebSocket endpoint <code>/ws/voice</code> accepts browser connections</li>
+<li>[ ] Audio flows bidirectionally (browser mic → pipeline → browser speaker)</li>
+<li>[ ] Live transcript events sent to frontend via WebSocket</li>
+</ul>
+<h3>Testing</h3>
+<pre><code>✅ Pipeline starts without errors
+✅ WebSocket connection establishes from a test client
+✅ Audio sent to pipeline returns spoken response
+✅ &quot;What doctors are available?&quot; triggers check_doctor_availability tool
+✅ Booking flow works end-to-end via voice
+✅ Cancellation flow works end-to-end via voice
+✅ Agent reads back phone number before confirming
+✅ Transcript events are emitted for each utterance
+</code></pre>
+<h3>📋 PROMPT — Phase 2</h3>
+<pre><code>I'm building a Voice AI Doctor Appointment Assistant using Pipecat (Python). I have a working FastAPI backend with SQLite database containing doctors, slots, and appointments.
+
+REQUIRED PIPELINE: Caller Audio → Silero VAD → ElevenLabs STT → Google Gemini LLM → ElevenLabs TTS → Caller Audio
+
+TASK: Build the complete Pipecat voice pipeline with function calling.
+
+1. Create `backend/voice/tools.py` — Three tools the LLM can call:
+
+   a) `check_doctor_availability(doctor_name: str = None, specialty: str = None, date: str = None) -&gt; dict`
+      - Query SQLite for available slots matching the filters
+      - If doctor_name given, fuzzy match (LIKE %name%)
+      - If specialty given, filter by specialty
+      - If date given, filter by date
+      - Return: list of {doctor_name, specialty, date, time, slot_id}
+      - If no results: return message saying no availability found
+
+   b) `book_appointment(slot_id: int, patient_phone: str) -&gt; dict`
+      - Verify slot exists and is not booked
+      - Mark slot as booked, create appointment record
+      - Return: confirmation with doctor name, date, time, phone
+      - On error: return error message
+
+   c) `cancel_appointment(patient_phone: str) -&gt; dict`
+      - Find appointment(s) by phone number
+      - If found: free the slot, delete appointment, return confirmation
+      - If not found: return &quot;No appointment found for this phone number&quot;
+
+   Each tool should be an async function that connects to SQLite directly.
+
+2. Create `backend/voice/pipeline.py` — The Pipecat pipeline:
+
+   ```python
+   # Use these Pipecat imports:
+   from pipecat.pipeline.pipeline import Pipeline
+   from pipecat.pipeline.runner import PipelineRunner
+   from pipecat.pipeline.task import PipelineTask, PipelineParams
+   from pipecat.transports.services.daily import DailyTransport  # or websocket
+   from pipecat.services.elevenlabs import ElevenLabsSTTService, ElevenLabsTTSService
+   from pipecat.services.google import GoogleLLMService
+   from pipecat.vad.silero import SileroVADAnalyzer
+   from pipecat.processors.aggregators.openai_llm_context import OpenAILLMContext
+   from pipecat.frames.frames import LLMMessagesFrame
+   ```
+
+   SYSTEM PROMPT for the LLM (make the agent sound like a professional, warm medical receptionist):
+   &quot;&quot;&quot;
+   You are a friendly and professional AI receptionist for a medical clinic. Your name is &quot;Ava&quot;.
+
+   Your job is to help callers:
+   1. Check doctor availability — ask about preferred specialty, doctor name, or date
+   2. Book appointments — collect their phone number, confirm it by reading it back, then book
+   3. Cancel appointments — ask for their phone number, confirm it, find and cancel their appointment
+
+   IMPORTANT RULES:
+   - Always ask for the caller's phone number before booking or cancelling
+   - ALWAYS read the phone number back to the caller and ask them to confirm before proceeding
+   - Be concise — keep responses to 1-2 sentences when possible
+   - Sound natural and conversational, not robotic
+   - If a caller asks for something you can't do, politely explain you can only help with appointments
+   - When presenting available slots, list at most 3-4 options to avoid overwhelming the caller
+   - Use natural time formats like &quot;Tuesday at 2:30 PM&quot; not &quot;2024-11-26 14:30&quot;
+   - After booking, give a brief confirmation with doctor name, date, time
+   - After cancelling, confirm what was cancelled
+   &quot;&quot;&quot;
+
+   PIPELINE SETUP:
+   - Use WebSocket transport (FastAPI WebSocket, NOT Daily)
+   - Configure ElevenLabs STT with appropriate model
+   - Configure ElevenLabs TTS with a professional female voice
+   - Configure Google Gemini with function calling enabled
+   - Register all three tools with proper JSON schema descriptions
+   - Add Silero VAD for voice activity detection
+   - Pipeline order: Transport Input → VAD → STT → LLM Context → LLM → TTS → Transport Output
+
+3. Integrate with `backend/main.py`:
+   - Add WebSocket endpoint: `@app.websocket(&quot;/ws/voice&quot;)`
+   - On connection: create a new pipeline instance for this caller
+   - Stream audio frames bidirectionally
+   - Send transcript events as JSON messages alongside audio:
+     ```json
+     {&quot;type&quot;: &quot;transcript&quot;, &quot;role&quot;: &quot;user&quot;, &quot;text&quot;: &quot;...&quot;, &quot;timestamp&quot;: &quot;...&quot;}
+     {&quot;type&quot;: &quot;transcript&quot;, &quot;role&quot;: &quot;assistant&quot;, &quot;text&quot;: &quot;...&quot;, &quot;timestamp&quot;: &quot;...&quot;}
+     {&quot;type&quot;: &quot;tool_call&quot;, &quot;tool&quot;: &quot;book_appointment&quot;, &quot;result&quot;: {...}, &quot;timestamp&quot;: &quot;...&quot;}
+     {&quot;type&quot;: &quot;call_state&quot;, &quot;state&quot;: &quot;connected|ended&quot;, &quot;timestamp&quot;: &quot;...&quot;}
+     ```
+   - Handle disconnection gracefully (cleanup pipeline)
+
+4. IMPORTANT — WebSocket Audio Protocol:
+   - Browser sends: raw PCM audio frames (16-bit, 16kHz, mono) as binary WebSocket messages
+   - Server sends back: same format audio + JSON text messages for transcripts
+   - Client distinguishes audio (binary) from transcript (text) messages
+
+5. Error handling:
+   - If ElevenLabs or Gemini API fails, send error message to client
+   - If database operation fails in a tool, return user-friendly error via LLM
+   - Graceful shutdown on WebSocket disconnect
+
+Make sure the pipeline can handle multiple concurrent callers (each WebSocket gets its own pipeline instance). Use proper async/await throughout.
+</code></pre>
+<hr />
+<h2>Phase 3 — Frontend Dashboard (Core Layout + Data Display)</h2>
+<p><strong>⏱️ Estimated Time: 2.5 hours</strong></p>
+<h3>What You Build</h3>
+<ul>
+<li>Professional dashboard layout</li>
+<li>Doctors listing with specialties and availability</li>
+<li>Appointments table with real-time updates</li>
+<li>Responsive design</li>
+</ul>
+<h3>UI/UX Design Specifications</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│  🏥 Carely          [Status: Ready]        [Try Call ☎️]  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─ Our Doctors ──────────────────────────────────────────────┐ │
+│  │                                                            │ │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │ │
+│  │  │ 👩‍⚕️ Dr.   │  │ 👨‍⚕️ Dr.   │  │ 👩‍⚕️ Dr.   │  │ 👨‍⚕️ Dr.   │  │ │
+│  │  │ Sarah    │  │ Raj      │  │ Emily    │  │ James    │  │ │
+│  │  │ Johnson  │  │ Patel    │  │ Chen     │  │ Wilson   │  │ │
+│  │  │          │  │          │  │          │  │          │  │ │
+│  │  │ Cardio   │  │ Derma    │  │ Pedia    │  │ Ortho    │  │ │
+│  │  │ 5 slots  │  │ 3 slots  │  │ 4 slots  │  │ 6 slots  │  │ │
+│  │  └──────────┘  └──────────┘  └──────────┘  └──────────┘  │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                                                                 │
+│  ┌─ Available Slots ──────────────────────────────────────────┐ │
+│  │  Doctor          │ Date       │ Time    │ Status           │ │
+│  │  Dr. Johnson     │ Nov 25     │ 9:00 AM │ 🟢 Available     │ │
+│  │  Dr. Johnson     │ Nov 25     │ 10:30AM │ 🟢 Available     │ │
+│  │  Dr. Patel       │ Nov 26     │ 2:00 PM │ 🔴 Booked        │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                                                                 │
+│  ┌─ Appointments ─────────────────────────────────────────────┐ │
+│  │  Patient Phone   │ Doctor      │ Date/Time    │ Actions    │ │
+│  │  (555) 123-4567  │ Dr. Patel   │ Nov 26 2PM   │ [Cancel]   │ │
+│  └────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Deliverables Checklist</h3>
+<ul>
+<li>[ ] Header with branding, status indicator, and "Try Call" button</li>
+<li>[ ] Doctor cards grid with name, specialty, available slot count</li>
+<li>[ ] Clickable doctor cards that expand/filter the slots table</li>
+<li>[ ] Slots table showing all available slots</li>
+<li>[ ] Appointments table showing booked appointments</li>
+<li>[ ] Auto-refresh data every 5 seconds (or after call ends)</li>
+<li>[ ] Responsive layout (desktop + tablet)</li>
+<li>[ ] Loading skeletons for data fetching states</li>
+<li>[ ] Empty states with helpful messages</li>
+</ul>
+<h3>Testing</h3>
+<pre><code>✅ Dashboard loads and fetches doctors from API
+✅ Doctor cards display correctly with slot counts
+✅ Slots table filters when clicking a doctor card
+✅ Appointments table shows current bookings
+✅ Data refreshes after changes
+✅ Responsive on different screen widths
+✅ Loading states shown while fetching
+✅ Empty states shown when no data
+</code></pre>
+<h3>📋 PROMPT — Phase 3 (UI/UX + Frontend)</h3>
+<pre><code>I'm building the frontend dashboard for a Voice AI Doctor Appointment Assistant. The backend REST API is running at http://localhost:8000.
+
+API ENDPOINTS AVAILABLE:
+- GET /api/doctors — returns [{id, name, specialty}]
+- GET /api/doctors/{id}/slots — returns [{id, date, time, duration_minutes, doctor_name}] (available only)
+- GET /api/appointments — returns [{id, doctor_id, slot_id, patient_phone, doctor_name, date, time, created_at}]
+- GET /api/health — returns {status, timestamp}
+
+TECH STACK: React 18 + TypeScript + Vite + Tailwind CSS 3 + Framer Motion + Lucide React icons
+
+DESIGN SYSTEM:
+- Color palette: 
+  Primary: Indigo (#4F46E5) with lighter/darker variants
+  Accent: Emerald (#10B981) for success/available states
+  Warning: Amber (#F59E0B)
+  Error: Rose (#F43F5E) for booked/cancel states
+  Background: Slate-50 (#F8FAFC), Cards: White
+  Text: Slate-900 primary, Slate-500 secondary
+- Typography: Inter font (import from Google Fonts)
+- Border radius: rounded-xl for cards, rounded-lg for buttons
+- Shadows: shadow-sm for cards, shadow-md on hover
+- Spacing: consistent p-6 for cards, gap-6 between sections
+
+TASK: Build the complete dashboard. Create these files:
+
+1. `frontend/src/types/index.ts` — TypeScript interfaces:
+   Doctor, Slot, Appointment, ApiResponse, CallState
+
+2. `frontend/src/hooks/useApi.ts` — Custom hook:
+   - Fetches doctors, slots, appointments from the API
+   - Auto-refresh every 5 seconds
+   - Loading and error states
+   - Function to manually trigger refresh
+
+3. `frontend/src/components/Header.tsx`:
+   - App name &quot;Carely&quot; with a subtle medical cross icon
+   - Connection status indicator (green dot = connected to API, red = disconnected)
+   - &quot;Try Call&quot; button (prominent, indigo, with phone icon) — onClick passed as prop
+   - Clean, minimal design — no clutter
+
+4. `frontend/src/components/DoctorCard.tsx`:
+   - Card showing: doctor avatar placeholder (colored initials circle), name, specialty badge
+   - Available slot count with green indicator
+   - Hover effect: slight lift + shadow increase (framer-motion)
+   - Click to filter slots table by this doctor
+   - Selected state: indigo border + subtle indigo background
+
+5. `frontend/src/components/DoctorsGrid.tsx`:
+   - Responsive grid of DoctorCards (4 columns desktop, 2 tablet, 1 mobile)
+   - Section title &quot;Our Doctors&quot; with doctor count
+   - &quot;All&quot; filter chip to reset selection
+
+6. `frontend/src/components/SlotsTable.tsx`:
+   - Table/list showing available slots
+   - Columns: Doctor, Specialty, Date (formatted nicely like &quot;Tue, Nov 25&quot;), Time (like &quot;9:00 AM&quot;), Status
+   - Green badge for Available, Red badge for Booked
+   - Filter by selected doctor (from DoctorCard click)
+   - Sort by date/time ascending
+   - Empty state: &quot;No available slots&quot; with calendar icon
+
+7. `frontend/src/components/AppointmentsTable.tsx`:
+   - Table showing booked appointments
+   - Columns: Patient Phone (formatted), Doctor, Date &amp; Time, Booked On
+   - Each row should gently highlight (pulse green) when newly added
+   - Section title &quot;Appointments&quot; with count badge
+   - Empty state: &quot;No appointments yet — try booking one via a call!&quot;
+   - Row highlight animation when data changes (framer-motion AnimatePresence)
+
+8. `frontend/src/App.tsx`:
+   - Compose all components into the dashboard layout
+   - Manage state: selected doctor, call state
+   - Pass &quot;Try Call&quot; handler (will be implemented in Phase 4)
+   - Layout: Header → DoctorsGrid → SlotsTable → AppointmentsTable
+   - Max-width container (max-w-7xl mx-auto) with padding
+   - Subtle gradient background or clean slate-50
+
+9. `frontend/src/main.tsx` and `frontend/index.html`:
+   - Import Inter font from Google Fonts
+   - Base styles in index.css with Tailwind directives
+
+10. DESIGN PRINCIPLES — the assignment says &quot;professional, top-notch&quot;:
+    - NO generic AI-generated look — make it refined
+    - Minimal text, let the UI speak
+    - Consistent spacing and alignment
+    - Smooth micro-interactions (hover effects, transitions)
+    - Professional color usage (not too many colors)
+    - Clean typography hierarchy
+    - Proper empty states and loading skeletons (pulsing gray boxes)
+
+Make everything fully typed with TypeScript. Use Tailwind utility classes exclusively (no custom CSS except Tailwind directives). Every component should have smooth animations with framer-motion where appropriate.
+</code></pre>
+<hr />
+<h2>Phase 4 — Voice Call Integration (Frontend ↔ Pipeline)</h2>
+<p><strong>⏱️ Estimated Time: 2.5 hours</strong> ⭐ <em>Critical integration phase</em></p>
+<h3>What You Build</h3>
+<ul>
+<li>WebSocket connection from browser to voice pipeline</li>
+<li>Microphone capture → send audio to backend</li>
+<li>Receive audio from backend → play through speakers</li>
+<li>Live transcript display during calls</li>
+<li>Call state management (idle → connecting → connected → ended)</li>
+</ul>
+<h3>Deliverables Checklist</h3>
+<ul>
+<li>[ ] WebSocket connects to <code>ws://localhost:8000/ws/voice</code></li>
+<li>[ ] Microphone permission requested and audio captured</li>
+<li>[ ] Audio streams to backend as PCM frames</li>
+<li>[ ] Return audio plays through speakers</li>
+<li>[ ] Transcript messages parsed and displayed in real-time</li>
+<li>[ ] Call state machine works correctly</li>
+<li>[ ] "End Call" button stops everything and cleans up</li>
+<li>[ ] Error handling for mic permission denied, WebSocket failure</li>
+</ul>
+<h3>Testing</h3>
+<pre><code>✅ Clicking &quot;Try Call&quot; requests mic permission
+✅ WebSocket connects to backend
+✅ Speaking into mic sends audio to pipeline
+✅ AI response plays through speakers
+✅ Transcript shows user and AI messages in real-time
+✅ &quot;End Call&quot; disconnects cleanly
+✅ Reconnection works after ending a call
+✅ Full flow: ask about doctors → give phone → book appointment → see it on dashboard
+</code></pre>
+<h3>📋 PROMPT — Phase 4</h3>
+<pre><code>I have a React + TypeScript frontend dashboard and a FastAPI backend with a Pipecat voice pipeline. The backend has a WebSocket endpoint at ws://localhost:8000/ws/voice.
+
+WEBSOCKET PROTOCOL (backend sends/receives):
+- Binary messages: Raw PCM audio (16-bit, 16kHz, mono)
+- Text messages (JSON):
+  {&quot;type&quot;: &quot;transcript&quot;, &quot;role&quot;: &quot;user&quot;|&quot;assistant&quot;, &quot;text&quot;: &quot;...&quot;, &quot;timestamp&quot;: &quot;...&quot;}
+  {&quot;type&quot;: &quot;tool_call&quot;, &quot;tool&quot;: &quot;check_doctor_availability&quot;|&quot;book_appointment&quot;|&quot;cancel_appointment&quot;, &quot;result&quot;: {...}, &quot;timestamp&quot;: &quot;...&quot;}
+  {&quot;type&quot;: &quot;call_state&quot;, &quot;state&quot;: &quot;connected&quot;|&quot;ended&quot;, &quot;timestamp&quot;: &quot;...&quot;}
+
+TASK: Build the voice call integration layer and transcript UI.
+
+1. Create `frontend/src/hooks/useVoiceCall.ts` — Custom hook managing the entire call lifecycle:
+
+   STATE:
+   - callState: 'idle' | 'connecting' | 'connected' | 'ended'
+   - transcript: Array&lt;{role: 'user'|'assistant'|'system', text: string, timestamp: Date}&gt;
+   - error: string | null
+   - isMuted: boolean
+
+   FUNCTIONS:
+   - startCall(): 
+     a) Request microphone permission (navigator.mediaDevices.getUserMedia)
+     b) Set state to 'connecting'
+     c) Open WebSocket to ws://localhost:8000/ws/voice
+     d) On open: set state to 'connected'
+     e) Create AudioContext (sampleRate: 16000)
+     f) Connect mic stream → ScriptProcessorNode (or AudioWorkletNode) → extract PCM 16-bit frames
+     g) Send PCM frames as binary WebSocket messages
+     h) On incoming binary message: decode PCM → play through AudioContext
+     i) On incoming text message: parse JSON, update transcript array
+     j) On WebSocket close/error: set state to 'ended', cleanup
+
+   - endCall():
+     a) Close WebSocket connection
+     b) Stop microphone stream (stop all tracks)
+     c) Close AudioContext
+     d) Set state to 'ended'
+
+   - toggleMute():
+     a) Toggle isMuted state
+     b) If muted, stop sending audio frames (but keep WebSocket open)
+
+   - resetCall():
+     a) Clear transcript
+     b) Set state to 'idle'
+
+   AUDIO HANDLING DETAILS:
+   - Use AudioWorkletNode if supported, fallback to ScriptProcessorNode
+   - Convert Float32 samples to Int16 PCM before sending
+   - For playback: create a queue of audio buffers, play them sequentially to avoid gaps
+   - Handle sample rate conversion if browser mic is not 16kHz
+
+2. Create `frontend/src/components/TranscriptPanel.tsx`:
+   - Scrollable panel showing conversation messages
+   - User messages: right-aligned, indigo background, white text
+   - Assistant messages: left-aligned, white/gray background, dark text
+   - System messages: centered, smaller, muted text
+   - Tool call indicators: subtle card showing &quot;Checking availability...&quot; / &quot;Booking appointment...&quot; with spinner
+   - Auto-scroll to bottom on new message
+   - Timestamps shown on hover
+   - Smooth entry animations (framer-motion: fade + slide up)
+
+3. Create `frontend/src/components/CallControls.tsx`:
+   - During idle: &quot;Try Call&quot; button (large, indigo, with phone icon)
+   - During connecting: Pulsing animation, &quot;Connecting...&quot; text
+   - During connected: 
+     - Call timer (MM:SS format, counting up)
+     - Mute/Unmute button with microphone icon toggle
+     - End Call button (red, with phone-down icon)
+   - During ended: &quot;Call Ended&quot; message, &quot;New Call&quot; button to reset
+   - All transitions animated smoothly
+
+4. Update `frontend/src/App.tsx`:
+   - Integrate useVoiceCall hook
+   - Show TranscriptPanel in a sidebar or below the call controls
+   - After call ends, trigger data refresh (appointments table should update)
+   - Layout: Dashboard fills most of the screen, call panel on the right or as an overlay
+
+5. IMPORTANT AUDIO CONSIDERATIONS:
+   - AudioContext must be created/resumed on user gesture (browser policy)
+   - Handle the case where user denies microphone permission — show helpful error
+   - Clean up ALL resources on unmount (tracks, AudioContext, WebSocket)
+   - Don't send audio when muted
+
+Make sure the transcript panel scrolls smoothly, messages appear with animation, and the overall experience feels like a real call interface.
+</code></pre>
+<hr />
+<h2>Phase 5 — Phone-Style Call UI (Bonus)</h2>
+<p><strong>⏱️ Estimated Time: 2 hours</strong> 🎁 <em>Bonus marks</em></p>
+<h3>What You Build</h3>
+<ul>
+<li>Phone-like call interface that pops up when "Try Call" is clicked</li>
+<li>Ringing → Connected → Ended states with animations</li>
+<li>Call timer, mute, end-call buttons</li>
+<li>Live transcript inside the phone</li>
+<li>Audio waveform visualization</li>
+<li>Ring and end-call sounds</li>
+</ul>
+<h3>UI Design</h3>
+<pre><code>         ┌──────────────────────┐
+         │    ┌──────────────┐  │
+         │    │  🏥 Carely│  │
+         │    │     Ava      │  │
+         │    │   AI Assistant│  │
+         │    │              │  │
+         │    │  ~~~ 🔊 ~~~  │  │  ← Audio waveform
+         │    │              │  │
+         │    │   03:42      │  │  ← Call timer
+         │    │              │  │
+         │    │ ┌──────────┐ │  │
+         │    │ │Transcript│ │  │
+         │    │ │You: Hi...│ │  │
+         │    │ │Ava: Hello│ │  │
+         │    │ │...       │ │  │
+         │    │ └──────────┘ │  │
+         │    │              │  │
+         │    │  🔇    📞    │  │  ← Mute + End Call
+         │    └──────────────┘  │
+         └──────────────────────┘
+</code></pre>
+<h3>📋 PROMPT — Phase 5 (Bonus UI)</h3>
+<pre><code>I have a working Voice AI Doctor Appointment Assistant with a React dashboard and voice call integration. Now I want to add a PREMIUM phone-style call UI as a bonus feature.
+
+CURRENT STATE:
+- useVoiceCall hook manages call lifecycle (idle/connecting/connected/ended)
+- TranscriptPanel shows conversation messages
+- Call controls exist but are basic buttons
+
+TASK: Create a stunning phone-style call interface that overlays the dashboard.
+
+1. Create `frontend/src/components/PhoneCallUI.tsx` — The main phone component:
+
+   VISUAL DESIGN:
+   - Appears as a floating phone frame (iPhone-style rounded rectangle)
+   - Position: fixed, right side of screen, vertically centered
+   - Size: ~375px wide, ~700px tall (like a real phone)
+   - Dark gradient background (slate-900 to slate-800)
+   - Subtle phone frame with rounded-3xl corners and thin border
+   - &quot;Notch&quot; at the top for realism (optional but nice)
+
+   CALL STATES with animations:
+
+   a) RINGING state (when connecting):
+      - Caller name &quot;Carely&quot; and subtitle &quot;Ava — AI Receptionist&quot;
+      - Avatar circle with gentle pulse animation (ring ripple effect)
+      - &quot;Calling...&quot; text with animated dots
+      - Green &quot;Accept&quot; button (optional — or auto-connect after 2s fake ring)
+      - Red &quot;Decline&quot; button
+      - Play a subtle ring sound (use Web Audio API to generate a soft ring tone, or use a base64-encoded short audio clip)
+
+   b) CONNECTED state:
+      - Caller info at top (name, &quot;Connected&quot; status with green dot)
+      - Call timer counting up (MM:SS) in large font
+      - AUDIO WAVEFORM VISUALIZATION:
+        * Use Web Audio API's AnalyserNode on the incoming audio
+        * Display as smooth, animated bars or a sine wave
+        * React to actual audio amplitude
+        * Use canvas for performance
+        * Colors: indigo/violet gradient that pulses with audio
+      - Transcript panel (scrollable, taking up middle ~40% of phone)
+        * Messages styled like iMessage bubbles
+        * User: right-aligned, indigo bubbles
+        * AI: left-aligned, dark-gray bubbles
+        * Smooth scroll, new messages slide in from bottom
+      - Bottom action bar:
+        * Mute/Unmute button (round, with mic icon)
+        * Speaker button (round, with speaker icon) — optional
+        * End Call button (larger, red circle with phone-down icon)
+        * Labels under each button in tiny text
+      - When AI is speaking: show a subtle &quot;Ava is speaking...&quot; indicator
+
+   c) ENDED state:
+      - &quot;Call Ended&quot; text
+      - Call duration summary
+      - Booking confirmation card (if appointment was booked):
+        * Shows doctor name, date, time, patient phone
+        * Green checkmark animation
+        * &quot;Appointment Confirmed&quot; header
+      - &quot;Call Again&quot; button to restart
+      - Fade out after a few seconds or on click
+
+   ANIMATIONS (Framer Motion):
+   - Phone slides in from the right when call starts (spring animation)
+   - Phone slides out to the right when dismissed
+   - State transitions use crossfade
+   - Waveform is continuously animated
+   - Buttons have press-down micro-animation (scale)
+   - New transcript messages: slide up + fade in
+   - Booking confirmation card: scale up + fade in with confetti (optional)
+
+2. Create `frontend/src/components/AudioWaveform.tsx`:
+   - Takes an AnalyserNode as prop
+   - Renders a canvas with animated audio visualization
+   - Style: smooth bars or flowing waveform
+   - Colors adapt to audio intensity (soft indigo when quiet, vibrant when loud)
+   - Fallback to gentle idle animation when no audio
+   - Use requestAnimationFrame for smooth 60fps rendering
+
+3. Create `frontend/src/utils/sounds.ts`:
+   - generateRingTone(): Creates a subtle phone ring using Web Audio API OscillatorNode
+     * Two-tone pattern (like a real phone ring)
+     * Plays for 2 seconds, with 3-second gap, loops
+   - generateEndCallTone(): Short &quot;call ended&quot; beep
+   - Use AudioContext, OscillatorNode, GainNode for all sounds
+   - Functions to start/stop sounds
+
+4. Update `frontend/src/App.tsx`:
+   - When &quot;Try Call&quot; clicked: show PhoneCallUI overlay
+   - Dashboard should slightly dim/blur behind the phone
+   - After call ends and phone dismissed: refresh all dashboard data
+   - Phone can be dragged to reposition (optional — framer-motion drag)
+
+5. Update `frontend/src/components/AppointmentsTable.tsx`:
+   - When a new appointment appears (after call books one):
+     * That row pulses with a green highlight for 3 seconds
+     * Smooth row entry animation
+
+6. DESIGN POLISH:
+   - The phone UI should feel PREMIUM — like a real app, not a school project
+   - Subtle glassmorphism effects (backdrop-blur, semi-transparent backgrounds)
+   - Consistent icon sizing and spacing
+   - Smooth, non-janky animations (use GPU-accelerated transforms only)
+   - Consider dark mode for the phone UI since it has dark background
+   - Mobile responsive: on small screens, phone goes full-screen instead of floating
+
+This is the bonus feature that will make the project stand out. Make it look impressive!
+</code></pre>
+<hr />
+<h2>Phase 6 — Integration Testing &amp; Bug Fixes</h2>
+<p><strong>⏱️ Estimated Time: 1.5 hours</strong></p>
+<h3>What You Test</h3>
+<p>Full end-to-end flows through the UI</p>
+<h3>Test Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Scenario</th>
+<th>Steps</th>
+<th>Expected Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Full Booking Flow</strong></td>
+<td>Start call → Ask about cardiologists → Get availability → Give phone number → Confirm number → Book slot</td>
+<td>Appointment appears in dashboard table, slot shows as booked</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Full Cancellation Flow</strong></td>
+<td>Start call → Say you want to cancel → Give phone number → Confirm → Cancel</td>
+<td>Appointment removed from table, slot freed</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Check Availability Only</strong></td>
+<td>Start call → Ask what doctors are available → Ask about specific date → End call</td>
+<td>No changes to data, transcript shows conversation</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Error: No Availability</strong></td>
+<td>Ask for a doctor with no free slots</td>
+<td>Agent says no slots available, suggests alternatives</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Error: Wrong Phone for Cancel</strong></td>
+<td>Try to cancel with a phone number that has no bookings</td>
+<td>Agent says no appointment found</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Multiple Calls</strong></td>
+<td>Do two separate calls, booking in each</td>
+<td>Both appointments show in dashboard</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Dashboard Real-time Update</strong></td>
+<td>Book via call, watch dashboard</td>
+<td>Appointments table updates, slots count changes</td>
+</tr>
+</tbody>
+</table>
+<h3>📋 PROMPT — Phase 6</h3>
+<pre><code>I have a complete Voice AI Doctor Appointment Assistant with:
+- FastAPI backend with REST API and SQLite database
+- Pipecat voice pipeline with ElevenLabs STT/TTS and Google Gemini LLM
+- React frontend dashboard with doctor cards, slots table, appointments table
+- Phone-style call UI with waveform visualization
+- WebSocket voice call integration
+
+TASK: Do a thorough integration test and fix all issues.
+
+1. VERIFY THE COMPLETE FLOW:
+   - Start the backend: `cd backend &amp;&amp; uvicorn main:app --reload --port 8000`
+   - Start the frontend: `cd frontend &amp;&amp; npm run dev`
+   - Open browser to http://localhost:5173
+   - Check: Dashboard loads, doctors and slots display correctly
+
+2. TEST VOICE CALL:
+   - Click &quot;Try Call&quot;
+   - Verify: Phone UI appears, ring sound plays, WebSocket connects
+   - Verify: Microphone permission requested
+   - Speak: &quot;Hi, I'd like to see a cardiologist&quot;
+   - Verify: STT transcribes correctly, LLM calls check_doctor_availability, TTS responds with available slots
+   - Speak: &quot;I'd like to book the 9 AM slot on Tuesday&quot;
+   - Verify: Agent asks for phone number
+   - Speak: &quot;My number is 555-123-4567&quot;
+   - Verify: Agent reads back the number and asks to confirm
+   - Speak: &quot;Yes, that's correct&quot;
+   - Verify: Agent books the appointment, confirmation shown
+   - End call
+   - Verify: Dashboard updates — appointment appears, slot marked as booked
+
+3. FIX COMMON ISSUES:
+   - Audio format mismatches (sample rate, bit depth, channels)
+   - WebSocket message ordering (audio vs transcript)
+   - CORS errors
+   - Race conditions in database writes
+   - Microphone not released after call ends
+   - AudioContext not resuming (browser autoplay policy)
+   - Pipeline cleanup on disconnect
+   - Transcript not auto-scrolling
+   - Timer not stopping on call end
+
+4. CHECK EDGE CASES:
+   - What happens if user clicks &quot;Try Call&quot; while already in a call?
+   - What happens if WebSocket disconnects mid-call?
+   - What happens if API is down when dashboard loads?
+   - What happens if user denies microphone permission?
+   - What happens if two users book the same slot simultaneously?
+
+5. VERIFY ALL BONUS FEATURES:
+   - Silero VAD is working (agent doesn't interrupt while user is speaking)
+   - Audio waveform responds to actual audio
+   - Ring/end-call sounds play
+   - Phone UI animations are smooth
+   - Booking confirmation card shows inside phone after booking
+   - Dashboard row highlights when appointment is added/removed
+
+6. FIX any CSS/layout issues:
+   - Phone UI positioning on different screen sizes
+   - Table overflow on small screens
+   - Doctor cards grid responsiveness
+   - Proper z-index stacking (phone UI above dashboard)
+
+After fixing everything, do one final clean run of the full booking flow and confirm it works end-to-end.
+</code></pre>
+<hr />
+<h2>Phase 7 — Final Polish, README &amp; Submission Prep</h2>
+<p><strong>⏱️ Estimated Time: 1 hour</strong></p>
+<h3>What You Finalize</h3>
+<ul>
+<li>README with complete setup instructions</li>
+<li><code>.env.example</code> with all variables documented</li>
+<li>Pipeline description write-up</li>
+<li>Code cleanup and comments</li>
+<li>Final visual polish</li>
+</ul>
+<h3>📋 PROMPT — Phase 7</h3>
+<pre><code>I have a complete, working Voice AI Doctor Appointment Assistant. Now I need to prepare it for submission.
+
+TASK: Final polish and submission preparation.
+
+1. Create a comprehensive `README.md`:
+
+   ```markdown
+   # 🏥 Carely — Voice Doctor Appointment Assistant
+
+   A voice-based doctor appointment booking system where callers speak to an AI receptionist (Ava) to check availability, book, and cancel appointments. Built with Pipecat, ElevenLabs, Google Gemini, and React.
+
+   ## 🎥 Demo
+   [Link to demo video]
+
+   ## 🛠️ Tech Stack
+   - **Voice Pipeline**: Pipecat (Python) with Silero VAD
+   - **Speech-to-Text**: ElevenLabs
+   - **Text-to-Speech**: ElevenLabs
+   - **LLM**: Google Gemini 2.0 Flash (function calling)
+   - **Backend**: FastAPI + SQLite
+   - **Frontend**: React 18 + TypeScript + Tailwind CSS + Framer Motion
+   - **Communication**: WebSocket (real-time audio + transcripts)
+
+   ## 📁 Project Structure
+   [tree output]
+
+   ## 🚀 Setup &amp; Running
+
+   ### Prerequisites
+   - Python 3.10+
+   - Node.js 18+
+   - ElevenLabs API key (free tier works)
+   - Google Gemini API key (free tier works)
+
+   ### 1. Clone &amp; Setup Backend
+   ```bash
+   git clone &lt;repo-url&gt;
+   cd voice-ai-doctor
+
+   # Backend
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+
+   # Configure environment
+   cp .env.example .env
+   # Edit .env with your API keys
+   ```
+
+   ### 2. Setup Frontend
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+   ### 3. Run
+   ```bash
+   # Terminal 1 — Backend
+   cd backend
+   uvicorn main:app --reload --port 8000
+
+   # Terminal 2 — Frontend
+   cd frontend
+   npm run dev
+   ```
+
+   Open http://localhost:5173 in your browser.
+
+   ## 🎙️ How to Use
+   1. Click &quot;Try Call&quot; on the dashboard
+   2. Allow microphone access
+   3. Talk to Ava — ask about doctors, book or cancel appointments
+   4. Watch the dashboard update in real-time
+
+   ## 🔑 Environment Variables
+   | Variable | Description | Where to get it |
+   |----------|-------------|-----------------|
+   | ELEVENLABS_API_KEY | ElevenLabs API key | elevenlabs.io |
+   | GOOGLE_API_KEY | Google Gemini API key | aistudio.google.com |
+   | ELEVENLABS_VOICE_ID | Voice ID for TTS | ElevenLabs voice library |
+   | DATABASE_PATH | SQLite DB path | Default: ./doctor_appointments.db |
+   ```
+
+2. Update `.env.example` with clear comments explaining each variable.
+
+3. Clean up code:
+   - Remove all console.log / print statements used for debugging
+   - Add concise docstrings to all Python functions
+   - Add JSDoc comments to React components
+   - Remove unused imports
+   - Ensure consistent formatting (run prettier on frontend, black on backend)
+
+4. Write the PIPELINE DESCRIPTION (required for submission):
+   &quot;&quot;&quot;
+   Pipeline Description:
+
+   The voice pipeline is built with Pipecat and follows this flow:
+   Browser Microphone → WebSocket → Silero VAD (voice activity detection) → 
+   ElevenLabs STT (speech-to-text) → Google Gemini 2.0 Flash LLM → 
+   ElevenLabs TTS (text-to-speech) → WebSocket → Browser Speaker
+
+   The LLM has three registered tools: check_doctor_availability, book_appointment, 
+   and cancel_appointment. When the caller asks about availability or wants to 
+   book/cancel, Gemini calls the appropriate tool, which queries the SQLite database 
+   directly. The system prompt instructs the LLM to act as &quot;Ava&quot;, a friendly medical 
+   receptionist who always confirms the caller's phone number before making changes.
+
+   Audio is streamed over WebSocket as raw PCM (16-bit, 16kHz, mono). Transcript 
+   events are sent as JSON text messages on the same WebSocket connection, allowing 
+   the frontend to display a live conversation log alongside the audio call.
+
+   VAD helps the pipeline detect when the caller stops speaking, so the LLM knows 
+   when to process the input and respond, creating natural turn-taking.
+   &quot;&quot;&quot;
+
+5. Create `.env.example` files in both root and backend directories.
+
+6. Verify .gitignore covers everything:
+   - .env, *.db, node_modules, __pycache__, venv, .vscode, dist, build
+
+7. Final check: Can someone clone this repo, follow the README, and have it running in 5 minutes?
+</code></pre>
+<hr />
+<h2>⏰ Time Budget Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Task</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase 0</strong></td>
+<td>Scaffolding &amp; Setup</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td><strong>Phase 1</strong></td>
+<td>Backend REST API</td>
+<td>1.5 hrs</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong></td>
+<td>Pipecat Voice Pipeline ⭐</td>
+<td>3 hrs</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong></td>
+<td>Frontend Dashboard</td>
+<td>2.5 hrs</td>
+</tr>
+<tr>
+<td><strong>Phase 4</strong></td>
+<td>Voice Call Integration ⭐</td>
+<td>2.5 hrs</td>
+</tr>
+<tr>
+<td><strong>Phase 5</strong></td>
+<td>Phone Call UI (Bonus) 🎁</td>
+<td>2 hrs</td>
+</tr>
+<tr>
+<td><strong>Phase 6</strong></td>
+<td>Integration Testing</td>
+<td>1.5 hrs</td>
+</tr>
+<tr>
+<td><strong>Phase 7</strong></td>
+<td>Polish &amp; Submission</td>
+<td>1 hr</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Total</strong></td>
+<td><strong>~14.5 hrs</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>🔑 API Keys You Need (Free Tier)</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Sign Up</th>
+<th>Free Tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ElevenLabs</strong></td>
+<td><a href="https://elevenlabs.io">elevenlabs.io</a></td>
+<td>10,000 chars/month free (enough for testing)</td>
+</tr>
+<tr>
+<td><strong>Google Gemini</strong></td>
+<td><a href="https://aistudio.google.com">aistudio.google.com</a></td>
+<td>Generous free quota for Gemini 2.0 Flash</td>
+</tr>
+</tbody>
+</table>
+<div class="alert-box alert-tip">
+    <div class="alert-header"><span class="alert-icon">💡</span> <strong>PRO-TIP</strong></div>
+    <div class="alert-body">Get your API keys **before starting Phase 2**. You'll need them for the voice pipeline. Sign up for both during Phase 0 setup.</div>
+</div>
+
+<hr />
+<h2>🚨 Common Pitfalls to Avoid</h2>
+<div class="alert-box alert-caution">
+    <div class="alert-header"><span class="alert-icon">⚠️</span> <strong>CRITICAL CAUTION</strong></div>
+    <div class="alert-body">1. **Don't commit API keys** — Use `.env` files, check `.gitignore` before every push<br>2. **Audio format mismatch** — Browser mic may be 44.1kHz; pipeline expects 16kHz. Always resample.<br>3. **AudioContext autoplay policy** — Must create/resume AudioContext on user gesture (button click)<br>4. **WebSocket cleanup** — Always close WebSocket, stop mic tracks, close AudioContext on call end<br>5. **Pipecat version** — Use latest stable pipecat-ai; the API changes between versions. Check their docs.<br>6. **ElevenLabs rate limits** — Free tier has limits. Test with short phrases first.<br>7. **CORS** — Make sure FastAPI CORS middleware allows your frontend origin<br>8. **Don't over-engineer** — The assignment values "working" over "feature-rich". Get core working first, then bonus.</div>
+</div>
+
+<div style="margin-top: 30px; padding-top: 10px; border-top: 1px solid #cbd5e1; text-align: center; font-size: 8.5pt; color: #64748b;">
+    Carely Project Plan · Generated on hp's System · Confidential Assignment Submission
+</div>
+
+</body>
+</html>

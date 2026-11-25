@@ -1,0 +1,41 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Dr. Sarah Johnson",
+      "specialty": "Cardiology"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Raj Patel",
+      "specialty": "Dermatology"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Emily Chen",
+      "specialty": "Pediatrics"
+    },
+    {
+      "id": 4,
+      "name": "Dr. James Wilson",
+      "specialty": "Orthopedics"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Priya Sharma",
+      "specialty": "General Medicine"
+    }
+  ],
+  "slot_templates": [
+    {"time": "09:00", "duration_minutes": 30},
+    {"time": "09:30", "duration_minutes": 30},
+    {"time": "10:00", "duration_minutes": 30},
+    {"time": "10:30", "duration_minutes": 30},
+    {"time": "11:00", "duration_minutes": 30},
+    {"time": "14:00", "duration_minutes": 30},
+    {"time": "14:30", "duration_minutes": 30},
+    {"time": "15:00", "duration_minutes": 30},
+    {"time": "15:30", "duration_minutes": 30},
+    {"time": "16:00", "duration_minutes": 30}
+  ]
+}
